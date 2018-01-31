@@ -2,6 +2,7 @@ import React from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import {TextField, Snackbar} from 'material-ui';
 import FirebaseMessaging from '../services/FirebaseMessaging';
+import UserAgent from '../services/UserAgent';
 
 class Notification extends React.Component {
   constructor(props) {
@@ -14,8 +15,15 @@ class Notification extends React.Component {
     this.state = {
       token: '',
       toast: false,
-      toastMessage: ''
+      toastMessage: '',
+      width: ''
     };
+  }
+  
+  componentWillMount() {
+    this.setState({
+      width: UserAgent().getWidth()
+    });
   }
 
   componentDidMount() {
@@ -56,6 +64,7 @@ class Notification extends React.Component {
           autoHideDuration={4000}
           onRequestClose={() => this.setState({toast: false})}
         />
+        width : {this.state.width}
       </div>
     );
   }
