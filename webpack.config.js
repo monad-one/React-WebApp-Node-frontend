@@ -122,7 +122,7 @@ module.exports = ({production = false, ssr = false, lite = false} = {}) => {
         }],
         logger: function () {},
         filename: 'sw.js',
-        navigateFallback: output.path + '/',
+        //navigateFallback: path.join(output.path, 'index.html'),
         minify: false
       })
     ],
