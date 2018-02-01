@@ -111,15 +111,17 @@ module.exports = ({production = false, ssr = false, lite = false} = {}) => {
         staticFileGlobs: [
           path.join(output.path, '**/*')
         ],
-        staticFileGlobsIgnorePatterns: [/\.map$/], // use this to ignore sourcemap files
-        runtimeCaching: [{
-          urlPattern: /https:\/\/.+.firebaseio.com/,
-          handler: 'networkFirst'
-        },
-        {
-          urlPattern: /\//,
-          handler: 'networkFirst'
-        }],
+        staticFileGlobsIgnorePatterns: [/\.map$/,/\.json$/], // use this to ignore sourcemap files
+        runtimeCaching: [
+          // {
+          //   urlPattern: /https:\/\/.+.firebaseio.com/,
+          //   handler: 'networkFirst'
+          // },
+          {
+            urlPattern: /http:\/\/localhost/,
+            handler: 'networkFirst'
+          }
+        ],
         logger: function () {},
         filename: 'sw.js',
         //navigateFallback: path.join(output.path, 'index.html'),
